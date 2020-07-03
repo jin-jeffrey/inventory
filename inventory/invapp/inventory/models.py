@@ -11,6 +11,7 @@ class Item(models.Model):
 	date_purchased = models.DateTimeField(default=timezone.now)
 	date_sold = models.DateTimeField(default=timezone.now)
 	sold = models.BooleanField()
+	price_sold = models.FloatField(default=0)
 
 	def __str__(self):
 		return self.product

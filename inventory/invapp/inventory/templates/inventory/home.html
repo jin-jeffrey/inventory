@@ -1,4 +1,5 @@
-{% load static %}
+{% load mathfilters %}
+{% load tracker %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,40 +9,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <link rel="stylesheet" href = "{% static 'inventory/css/home.css">
+
     <!-- If there is a title provided, add it, otherwise use default -->
 	{% if title%}
 		<title>Django Inventory - {{ title }}</title>
 	{% else %}
 		<title>Django Inventory</title>
 	{% endif %}
-	
+
 </head>
 <body>
-	<div class = "grid-container">
-	{% for item in stock %}
-		<div class = "grid-item" style = "width: 18rem">
- 			<div class>
- 				<a class = "mr-2" href = "#">{{ item.product }} </a>
- 				<small class = "text-muted"> {{ item.date_purchased|date:"F d, Y" }}</small>
- 			</div>
- 			<p class>
-				<p>Style Code: {{ item.style }} </p>
-				<p>Quantity: {{ item.quantity }} </p>
-				<p>Unit Price: {{ item.price }} </p>
-				<p>Size: {{ item.size }} </p>
-				<p>Sold: {{ item.sold }} </p>
- 			</p>
- 		</div>
-	{% endfor %}
+	<div class = "container-fluid">
+		<div class = "row">
+			<div class = "card">Total Inventory Value: {% findTotal %} </div>
+			<div class = "card">Total Profit: {% totalProfit %} </div>
+		</div>
+		<div class = "row align-items-start ml-3">
+			{% for item in stock %}
+			<div class = "card mt-4 p-3 ml-4" style = "width:30.75%">
+				<div>
+					<strong> {{ item.product }} </strong>
+					<small class = "text-muted"> {{ item.date_purchased|date:"F d, Y"}}</small>
+					<div class = "justify-content-md-center">
+						<small> Style: {{ item.style }} <br> </small> 
+						<small> Price: {{ item.price }} <br> </small>
+						<small> Size: {{ item.size }} <br> </small>
+						<small> Sold? {{ item.sold }} <br> </small>
+						<small> Profit: {% profit item %}</small>
+					</div>
+				</div>
+			</div>
+			{% if forloop.counter0|divisibleby:2 and not forloop.first %}
+			</div>
+			{% if not forloop.last%}
+			<div class = "row align-items-start ml-3">
+			{% endif %}
+			{% endif %}
+		{% endfor %}
 	</div>
 
     <!-- Optional Bootstrap JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
