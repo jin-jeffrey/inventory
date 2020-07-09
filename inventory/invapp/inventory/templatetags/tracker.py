@@ -1,5 +1,6 @@
 from django import template
 from ..models import Item
+import math
 
 register = template.Library()
 
@@ -12,7 +13,7 @@ def findTotal(firstItem):
 		for product in Items:
 			if product.sold == 0:
 				total+=product.price
-		return total
+		return round(total,2)
 	return 0
 
 @register.simple_tag
@@ -24,12 +25,12 @@ def totalProfit(firstItem):
 		for product in Items:
 			if product.sold == 1:
 				totalProfit += product.price_sold - product.price
-		return totalProfit
+		return round(totalProfit,2)
 	return 0
 	
 @register.simple_tag
 def profit(item):
 	if (item.sold):
 		profit = item.price_sold - item.price
-		return profit
+		return round(profit,2)
 

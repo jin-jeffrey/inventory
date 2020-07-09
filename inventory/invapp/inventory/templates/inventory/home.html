@@ -12,18 +12,10 @@
 	<!-- Stock Items arranged in "3 Items per Row" format -->
 	<div class = "row align-items-start ml-3">
 		{% for item in stock %}
-		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%">
-			<div>
-				<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black"> {{ item.product }} </a>
-				<small class = "text-muted"> {{ item.date_purchased|date:"F d, Y"}}</small>
-				<div class = "justify-content-md-center">
-					<small> Style: {{ item.style }} <br> </small> 
-					<small> Price: {{ item.price }} <br> </small>
-					<small> Size: {{ item.size }} <br> </small>
-					<small> Sold? {{ item.sold }} <br> </small>
-					<small> Profit: {% profit item %} </small>
-				</div>
-			</div>
+		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%; text-align: center">
+			<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black;"> {{ item.product }} </a>
+			<small class = "text-muted"> {{ item.color }} </small>
+			<small class = "text-muted"> {{ item.size }} </small>
 		</div>
 		{% if forloop.counter|divisibleby:3 and not forloop.first %}
 		</div>

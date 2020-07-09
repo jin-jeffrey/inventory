@@ -9,10 +9,11 @@ class Item(models.Model):
 	style = models.CharField(max_length = 15, default = '')
 	price = models.FloatField(default = '')
 	size = models.CharField(max_length = 10, default = '')
-	date_purchased = models.DateTimeField(default=timezone.now)
-	date_sold = models.DateTimeField(default=timezone.now)
+	date_purchased = models.DateField(default = timezone.now)
+	date_sold = models.DateField(default = timezone.now)
 	sold = models.BooleanField(default=False)
 	price_sold = models.FloatField(default=0)
+	color = models.CharField(max_length = 15, default = '')
 	account = models.ForeignKey(User,on_delete=models.CASCADE)
 
 	def __str__(self):

@@ -22,7 +22,7 @@ class ItemListView(ListView):
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.request.user)
-		return Item.objects.filter(account=user).order_by('-date_purchased')
+		return Item.objects.filter(account=user).order_by('product')
 
 class ItemDetailView(DetailView):
 	model = Item
@@ -39,7 +39,7 @@ class ItemDetailView(DetailView):
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
 	model = Item
-	fields = ['product', 'style', 'price', 'size', 'date_purchased']
+	fields = ['product', 'color', 'size', 'style', 'price', 'date_purchased']
 	success_url = "/inventory" 
 
 	def form_valid(self, form):
@@ -50,7 +50,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
 class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Item
 	success_url = "/inventory"
-	fields = ['product', 'style', 'price', 'size', 'date_purchased', 'date_sold', 'sold', 'price_sold']
+	fields = ['product', 'color', 'size', 'style', 'price', 'date_purchased', 'date_sold', 'sold', 'price_sold']
 
 	def form_valid(self, form):
 		form.instance.account = self.request.user
