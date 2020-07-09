@@ -1,0 +1,36 @@
+{% extends "inventory/base.html" %}
+{% load tracker %}
+
+{% block content %}
+<div class = "container-fluid">
+	<!-- Upper Section, Display Overall Inventory Value and Total Profits -->
+	<div class = "row">
+		<div class = "card p-3 mt-3" style = "width:25%; left:20%; text-align: center">Total Inventory Value: {% findTotal stock.first %}</div>
+		<div class = "card p-3 mt-3" style = "width:25%; left:30%; text-align: center">Total Profit: {% totalProfit stock.first %} </div>
+	</div>
+
+	<!-- Stock Items arranged in "3 Items per Row" format -->
+	<div class = "row align-items-start ml-3">
+		{% for item in stock %}
+		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%">
+			<div>
+				<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black"> {{ item.product }} </a>
+				<small class = "text-muted"> {{ item.date_purchased|date:"F d, Y"}}</small>
+				<div class = "justify-content-md-center">
+					<small> Style: {{ item.style }} <br> </small> 
+					<small> Price: {{ item.price }} <br> </small>
+					<small> Size: {{ item.size }} <br> </small>
+					<small> Sold? {{ item.sold }} <br> </small>
+					<small> Profit: {% profit item %} </small>
+				</div>
+			</div>
+		</div>
+		{% if forloop.counter|divisibleby:3 and not forloop.first %}
+		</div>
+		{% if not forloop.last%}
+		<div class = "row align-items-start ml-3">
+		{% endif %}
+		{% endif %}
+	{% endfor %}
+{% endblock content %}
+

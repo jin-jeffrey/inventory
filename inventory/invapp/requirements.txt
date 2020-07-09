@@ -1,0 +1,4 @@
+Django==2.2.13
+django-crispy-forms==1.9.1
+django-mathfilters==1.0.0
+requests==2.22.0

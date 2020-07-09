@@ -1,0 +1,63 @@
+<!-- create parent structure to reduce repeated code using template inheritance-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags for bootstrap -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- If there is a title provided, add it, otherwise use default -->
+    {% if title%}
+        <title>Django Inventory - {{ title }}</title>
+    {% else %}
+        <title>Django Inventory</title>
+    {% endif %}
+
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class = "navbar mt-3">
+        <!-- change to icon -->
+        <div style = "margin-left: 12%">
+            <a class = "navbar-brand" href = "/" style="color:black"> Inventory </a>
+        </div>
+        <div class = "mr-3">
+            {% if user.is_authenticated %}
+                {% if request.get_full_path == "/inventory/" %}
+                <a class = "btn btn-success px-3" href = "{% url 'item-create' %}" style="color: white">Add Item</a>
+                {% endif %}
+                {% if request.get_full_path == "/" %}
+                <a class = "btn btn-dark px-3" href="{% url 'inventory' %}" style = "color:white">Inventory</a>
+                {% endif %}
+                <a class = "btn btn-danger px-3" href="{% url 'logout' %}" style = "color: white">Logout</a>
+            {% else %}
+                <a class = "btn btn-success px-3" href="{% url 'login' %}" style = "color: white">Login</a>
+                <a class = "btn btn-danger px-3" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main role = "main">
+        <!-- display any messages if they appear -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class = "alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <!-- block content when template is used -->
+        {% block content %} {% endblock %}
+    </main>
+    <!-- Optional Bootstrap JavaScript -->
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "inventory/base.html" %}
+{% block content %}
+<div class = "content-section mt-5" style = "width:50%; margin:auto;">
+	<form method = "POST">
+		{% csrf_token %}
+		<!-- grouping for forms -->
+		<fieldset class = "form-group">
+			<legend class = "border-bottom mb-4">Delete Item</legend>
+			<h2 class = >Are you sure you want to delete the item: <em>{{ object.product }}</em>?</h2>
+		</fieldset>
+		<div class = "form-group">
+			<a class = "btn btn-outline-secondary" href = "{% url 'item-detail' object.id %}">Cancel</a>
+			<button class = "btn btn-outline-danger" type="submit">Delete</button>
+		</div>
+	</form>
+</div>
+{% endblock content %}

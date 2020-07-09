@@ -1,0 +1,2 @@
+Django==2.2.13
+django-mathfilters==1.0.0

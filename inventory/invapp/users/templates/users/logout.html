@@ -1,0 +1,11 @@
+{% extends "inventory/base.html" %}
+{% block content %}
+	<div class = "container mt-3">
+		<h5>You have successfully logged out.</h5>
+		<script type = "text/javascript">
+			setTimeout(function() {
+				window.location.href = '/';
+			}, 3500);
+		</script>
+	</div>	
+{% endblock content %}

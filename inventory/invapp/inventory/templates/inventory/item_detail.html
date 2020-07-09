@@ -1,0 +1,23 @@
+{% extends "inventory/base.html" %}
+{% load tracker %}
+
+{% block content %}
+	<div class = "mx-auto">
+		<div style = "width:20%">
+			<strong> {{ object.product }} </strong>
+			<small class = "text-muted"> {{ object.date_purchased|date:"F d, Y"}}</small>
+			<div class>
+				<small> Style: {{ object.style }} <br> </small> 
+				<small> Price: {{ object.price }} <br> </small>
+				<small> Size: {{ object.size }} <br> </small>
+				<small> Sold? {{ object.sold }} <br> </small>
+				<small> Profit: {% profit object %} </small>
+			</div>
+			<div>
+	            <a class = "btn btn-info px-3" href = "{% url 'item-update' object.id %}" style="color: white">Edit Post</a>
+	            <a class = "btn btn-danger px-3" href = "{% url 'item-delete' object.id %}" style="color: white">Delete Post</a>
+        	</div>
+		</div>
+	</div>
+{% endblock content %}
+
