@@ -31,7 +31,7 @@
                 {% if request.get_full_path == "/inventory/" %}
                 <a class = "btn btn-success px-3" href = "{% url 'item-create' %}" style="color: white">Add Item</a>
                 {% endif %}
-                {% if request.get_full_path == "/" %}
+                {% if request.get_full_path == "/" or 'item' in request.path %}
                 <a class = "btn btn-dark px-3" href="{% url 'inventory' %}" style = "color:white">Inventory</a>
                 {% endif %}
                 <a class = "btn btn-danger px-3" href="{% url 'logout' %}" style = "color: white">Logout</a>
