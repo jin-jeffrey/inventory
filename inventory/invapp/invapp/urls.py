@@ -26,6 +26,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'users/login.html'), name = 'login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'users/logout.html'), name = 'logout'),
     path('inventory/', inventory_views.ItemListView.as_view(), name = 'inventory'),
+    path('inventory/sold/', inventory_views.ItemSoldListView.as_view(), name = 'inventory-sold'),
     path('item/<int:pk>/', inventory_views.ItemDetailView.as_view(), name = 'item-detail'),
     path('item/new/', inventory_views.ItemCreateView.as_view(), name = 'item-create'),
     path('item/<int:pk>/update/', inventory_views.ItemUpdateView.as_view(), name = 'item-update'),

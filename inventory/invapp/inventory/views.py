@@ -22,7 +22,16 @@ class ItemListView(ListView):
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.request.user)
-		return Item.objects.filter(account=user).order_by('product')
+		return Item.objects.filter(account=user, sold=False).order_by('product')
+
+class ItemSoldListView(ListView):
+	model = Item
+	template_name = 'inventory/home.html'
+	context_object_name = 'stock'
+
+	def get_queryset(self):
+		user = get_object_or_404(User, username=self.request.user)
+		return Item.objects.filter(account=user, sold=True).order_by('product')
 
 class ItemDetailView(DetailView):
 	model = Item

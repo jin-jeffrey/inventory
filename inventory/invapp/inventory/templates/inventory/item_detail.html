@@ -2,7 +2,7 @@
 {% load tracker %}
 
 {% block content %}
-	<div class = "mx-auto" style = "width:20%; text-align: center; font-size: 30px;">
+	<div class = "mx-auto border border-light p-5" style = "width:60%; text-align: center; font-size: 30px;">
 		<div>
 			<strong> {{ object.product }} </strong>
 			<small class = "text-muted"> {{ object.date_purchased|date:"F d, Y"}}</small>
@@ -14,6 +14,9 @@
 				<small> Sold? {{ object.sold }} <br> </small>
 				<small> Profit: {% profit object %} </small>
 			</div>
+			<br>
+			<br>
+			<br>
 			<div>
 	            <a class = "btn btn-info px-3" href = "{% url 'item-update' object.id %}" style="color: white">Edit Item</a>
 	            <a class = "btn btn-danger px-3" href = "{% url 'item-delete' object.id %}" style="color: white">Delete Item</a>

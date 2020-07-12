@@ -16,13 +16,6 @@
 			<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black;"> {{ item.product }} </a>
 			<small class = "text-muted"> {{ item.color }} </small>
 			<small class = "text-muted"> {{ item.size }} </small>
-			<!-- replace with images -->
-			{% if item.sold %}
-			<small class = "text-muted"> sold! :D </small>
-			{% else %}
-			<small class = "text-muted"><em> still in inventory :'( </em></small>
-			{% endif %} 
-
 		</div>
 		{% if forloop.counter|divisibleby:3 and not forloop.first %}
 		</div>
