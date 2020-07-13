@@ -6,7 +6,7 @@
 		<!-- grouping for forms -->
 		<fieldset class = "form-group">
 			<legend class = "border-bottom mb-4">Delete Item</legend>
-			<h2 class = >Are you sure you want to delete: <em>{{ object.product }}</em>?</h2>
+			<h2 class = >Are you sure you want to delete: <em>{{ object.product }} {{ object.color }}</em>?</h2>
 		</fieldset>
 		<div class = "form-group">
 			<a class = "btn btn-outline-secondary" href = "{% url 'item-detail' object.id %}">Cancel</a>

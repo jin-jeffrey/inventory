@@ -26,7 +26,7 @@ class ItemListView(ListView):
 
 class ItemSoldListView(ListView):
 	model = Item
-	template_name = 'inventory/home.html'
+	template_name = 'inventory/homeSold.html'
 	context_object_name = 'stock'
 
 	def get_queryset(self):

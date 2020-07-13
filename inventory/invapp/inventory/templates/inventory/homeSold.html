@@ -5,11 +5,7 @@
 <div class = "container-fluid">
 	<!-- Upper Section, Display Overall Inventory Value and Total Profits -->
 	<div class = "row">
-		{% if not 'sold' in request.path%}
-		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center">Total Inventory Value: {% findTotal stock.first %}</div>
-		{% else %}
 		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center">Total Profit: {% totalProfit stock.first %} </div>
-		{% endif %}
 	</div>
 
 	<!-- Stock Items arranged in "3 Items per Row" format -->

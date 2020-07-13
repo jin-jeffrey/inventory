@@ -2,25 +2,61 @@
 {% load tracker %}
 
 {% block content %}
-	<div class = "mx-auto border border-light p-5" style = "width:60%; text-align: center; font-size: 30px;">
+	<div class = "mx-auto border border-dark rounded p-5 lead" style = "width:60%; text-align: center; font-size: 30px;">
 		<div>
-			<strong> {{ object.product }} </strong>
-			<small class = "text-muted"> {{ object.date_purchased|date:"F d, Y"}}</small>
-			<div class>
-				<small> Color: {{object.color}} <br> </small>
-				<small> Style: {{ object.style }} <br> </small> 
-				<small> Price: {{ object.price }} <br> </small>
-				<small> Size: {{ object.size }} <br> </small>
-				<small> Sold? {{ object.sold }} <br> </small>
-				<small> Profit: {% profit object %} </small>
-			</div>
-			<br>
-			<br>
-			<br>
 			<div>
-	            <a class = "btn btn-info px-3" href = "{% url 'item-update' object.id %}" style="color: white">Edit Item</a>
-	            <a class = "btn btn-danger px-3" href = "{% url 'item-delete' object.id %}" style="color: white">Delete Item</a>
-        	</div>
+			<strong> {{ object.product }} </strong> <br>
+			<div class = "text-muted" style="font-size:18px"> {{ object.date_purchased|date:"F d, Y"}}</div>
+			</div>
+			<div class = "container">
+				<div class = "row mb-3"> 
+					<div class = "col">
+						<div class="border-bottom"> {{ object.color }} </div>
+						<div class="text-muted" style="font-size:13px;">COLOR</div>
+					</div>
+					<div class = "col">
+						<div class="border-bottom"> {{ object.style }} </div>
+						<div class="text-muted" style="font-size:13px">STYLE</div>
+					</div>
+				</div>
+				<div class = "row mb-3"> 
+					<div class = "col">
+						<div class="border-bottom"> {{ object.price }} </div>
+						<div class="text-muted" style="font-size:13px">PRICE</div>
+					</div>
+					<div class = "col">
+						<div class="border-bottom"> {{ object.size }} </div>
+						<div class="text-muted" style="font-size:13px">SIZE</div>
+					</div>
+				</div>
+
+				{% if object.sold %}
+				<div class = "row mb-3"> 
+					<div class = "col">
+						<div class="border-bottom"> {{ object.date_sold }} </div>
+						<div class="text-muted" style="font-size:13px;">SALE DATE</div>
+					</div>
+					<div class = "col">
+						<div class="border-bottom"> {{ object.price_sold }} </div>
+						<div class="text-muted" style="font-size:13px">SALE AMOUNT</div>
+					</div>
+				</div>
+				<div class = "row mb-3"> 
+					<div class = "col">
+						<div class="border-bottom"> {% profit object %} </div>
+						<div class="text-muted" style="font-size:13px">PROFIT</div>
+					</div>
+				</div>
+				{% endif %}
+				<div class = "row"> 
+					<div class="col">
+		            	<a class = "btn btn-outline-info mt-5" href = "{% url 'item-update' object.id %}" style="width:65%">Edit Item</a>
+		        	</div>
+		        	<div class = "col">
+		            	<a class = "btn btn-outline-danger mt-5" href = "{% url 'item-delete' object.id %}" style="width:65%">Delete Item</a>
+		            </div>
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock content %}
