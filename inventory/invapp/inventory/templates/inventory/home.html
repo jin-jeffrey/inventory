@@ -2,20 +2,21 @@
 {% load tracker %}
 
 {% block content %}
-<div class = "container-fluid" style="background:">
+
+{% if stock.count < 19 %}
+<div class = "container-fluid" style="position:fixed; width:100%; height:100%; background:linear-gradient(45deg, #c7efff 40%, #ccd4ff 60%)">
+{% else %}
+<div class = "container-fluid" style="width:100%; height:100%; background:linear-gradient(45deg, #c7efff 40%, #ccd4ff 60%)">
+{% endif %}
 	<!-- Upper Section, Display Overall Inventory Value and Total Profits -->
 	<div class = "row">
-		{% if not 'sold' in request.path%}
 		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center;">Total Inventory Value: {% findTotal stock.first %}</div>
-		{% else %}
-		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center">Total Profit: {% totalProfit stock.first %} </div>
-		{% endif %}
 	</div>
 
 	<!-- Stock Items arranged in "3 Items per Row" format -->
 	<div class = "row align-items-start ml-3">
 		{% for item in stock %}
-		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%; text-align: center; background:">
+		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%; text-align: center;">
 			<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black; text-decoration: none;"> {{ item.product }} </a>
 			<small class = "text-muted"> {{ item.color }} </small>
 			<small class = "text-muted"> {{ item.size }} </small>

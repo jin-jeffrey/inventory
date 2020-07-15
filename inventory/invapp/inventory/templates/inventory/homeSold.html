@@ -2,7 +2,12 @@
 {% load tracker %}
 
 {% block content %}
-<div class = "container-fluid">
+
+{% if stock.count < 19 %}
+<div class = "container-fluid" style="position:fixed; width:100%; height:100%; background:linear-gradient(45deg, #c7efff 40%, #ccd4ff 60%)">
+{% else %}
+<div class = "container-fluid" style="width:100%; height:100%; background:linear-gradient(45deg, #c7efff 40%, #ccd4ff 60%)">
+{% endif %}
 	<!-- Upper Section, Display Overall Inventory Value and Total Profits -->
 	<div class = "row">
 		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center">Total Profit: {% totalProfit stock.first %} </div>
@@ -15,6 +20,7 @@
 			<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black;"> {{ item.product }} </a>
 			<small class = "text-muted"> {{ item.color }} </small>
 			<small class = "text-muted"> {{ item.size }} </small>
+			<small class = "text-muted"> Profit: {% profit item %} </small>
 		</div>
 		{% if forloop.counter|divisibleby:3 and not forloop.first %}
 		</div>
