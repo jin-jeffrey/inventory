@@ -2,11 +2,11 @@
 {% load tracker %}
 
 {% block content %}
-<div class = "container-fluid">
+<div class = "container-fluid" style="background:">
 	<!-- Upper Section, Display Overall Inventory Value and Total Profits -->
 	<div class = "row">
 		{% if not 'sold' in request.path%}
-		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center">Total Inventory Value: {% findTotal stock.first %}</div>
+		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center;">Total Inventory Value: {% findTotal stock.first %}</div>
 		{% else %}
 		<div class = "card p-3 mt-3" style = "width:25%; left:37.5%; text-align: center">Total Profit: {% totalProfit stock.first %} </div>
 		{% endif %}
@@ -15,8 +15,8 @@
 	<!-- Stock Items arranged in "3 Items per Row" format -->
 	<div class = "row align-items-start ml-3">
 		{% for item in stock %}
-		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%; text-align: center">
-			<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black;"> {{ item.product }} </a>
+		<div class = "card mt-4 p-3 ml-4" style = "width:30.75%; text-align: center; background:">
+			<a class = "font-weight-bold" href = "{% url 'item-detail' item.id %}" style = "color:black; text-decoration: none;"> {{ item.product }} </a>
 			<small class = "text-muted"> {{ item.color }} </small>
 			<small class = "text-muted"> {{ item.size }} </small>
 		</div>
@@ -27,5 +27,6 @@
 		{% endif %}
 		{% endif %}
 	{% endfor %}
+	<br>
 {% endblock content %}
 
