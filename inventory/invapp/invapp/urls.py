@@ -33,6 +33,7 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name = 'users/password_reset_complete.html'), name = 'password_reset_complete'),
     path('inventory/', inventory_views.ItemListView.as_view(), name = 'inventory'),
     path('inventory/sold/', inventory_views.ItemSoldListView.as_view(), name = 'inventory-sold'),
+    path('inventory/exportInventory', inventory_views.ItemExportListView.as_view(), name = 'inventory-export'),
     path('item/<int:pk>/', inventory_views.ItemDetailView.as_view(), name = 'item-detail'),
     path('item/new/', inventory_views.ItemCreateView.as_view(), name = 'item-create'),
     path('item/<int:pk>/update/', inventory_views.ItemUpdateView.as_view(), name = 'item-update'),

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventory Info Extractor</title>
+</head>
+<body>
+	{% for item in stock %}
+		{% if forloop.last %}
+			<small>["{{item.style}}",{{item.price}}]</small><br>
+		{% else %}
+			<small>["{{item.style}}",{{item.price}}],</small><br>
+		{% endif %}
+	{% endfor %}
+</body>
+</html>

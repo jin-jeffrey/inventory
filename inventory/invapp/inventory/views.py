@@ -33,6 +33,15 @@ class ItemSoldListView(ListView):
 		user = get_object_or_404(User, username=self.request.user)
 		return Item.objects.filter(account=user, sold=True).order_by('product')
 
+class ItemExportListView(ListView):
+	model = Item
+	template_name = 'inventory/exportInv.html'
+	context_object_name = 'stock'
+
+	def get_queryset(self):
+		user = get_object_or_404(User, username=self.request.user)
+		return Item.objects.filter(account=user, sold=False).order_by('product')
+
 class ItemDetailView(DetailView):
 	model = Item
 
