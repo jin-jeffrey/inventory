@@ -1,6 +1,9 @@
-# Inventory Tracking Application
+# INVM: Inventory Manager
 
-## Developers:
+## Description
+INVM is a webapp designed to assist small business owners in managing inventory and recording sales/profits, track users’ investments and sales to indicate products that outperform others, and allow users to easily integrate this web application into their bookkeeping
+
+## Developers
 
 * Jeffrey Jin
 
