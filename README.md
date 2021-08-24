@@ -4,9 +4,6 @@
 
 * Jeffrey Jin
 
-## Technologies Used  
-For the backend we used Prisma as our ORM, Express.js for the backend server, and React for the frontend.
-
 ## Requirements
 * Django
 
